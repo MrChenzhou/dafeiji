@@ -35,7 +35,8 @@
 				var oLis = document.querySelectorAll("li");
 				oLis.forEach((el,index)=>{
 					el.onclick = function () {
-
+						gameEngine.init().start();
+						//myPlane.sendSpeed = this.value;
 
 					}
 				})
