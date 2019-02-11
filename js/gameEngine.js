@@ -19,6 +19,7 @@
             })
 
         },
+
         loading : function (callback) {
             //3.创建飞机大战的logo
             var logo = document.createElement("div");
