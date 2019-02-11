@@ -1,0 +1,46 @@
+按照如下顺序编写类
+1.游戏引擎：
+      gameEngine类  只需要一个
+         ele: 游戏画面
+         bullets:[],多个子弹
+         enemys:[],//敌人飞机列表     
+         init（）初始化对象的 
+         loading（）记载进度条
+         start（）开始游戏
+         keyControll（）键盘控制
+         createEnemy（）创建敌人飞机
+         carsPlane（）检测飞机
+
+2.我的战机
+     myPlane类  只需要一个
+          ele：飞机节点
+          bulletSpeed:30, //小飞机发射子弹的速度
+          init（）初始化飞机
+          fire（）开火
+          boom（）我们的飞机爆炸
+
+3.子弹  
+      bullets类 多个子弹
+           ele：子弹的样子
+           id：每一颗子弹都有一个ID
+           init()初始化子弹
+           move() 子弹移动
+           boom()子弹爆炸
+
+4.敌人飞机
+      Enemy类 多架敌机
+       ele:敌机样子
+       hp:血量
+       speed:速度
+       dieImg:爆炸的样子
+       id:敌人飞机编号
+       init()初始化敌人飞机
+       move（）敌人飞机移动
+       hurt（）敌人飞机受伤
+       boom()敌人飞机爆炸
+
+ 5.common
+   crashTest()检测的状态
+
+子弹的DOM 对象里面已经使用了一个  timer
+
