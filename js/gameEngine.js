@@ -19,6 +19,10 @@
                 myPlane.init();
                 //7.按键控制位置
                 gameEngine.keyController();
+                //8.疯狂的发射子弹
+                myPlane.fire();
+                gameEngine.createEnemy();
+                gameEngine.testing();
 
             });
 
@@ -69,5 +73,42 @@
                 }
             }
         },
+        createEnemy(){
+            "use strict";
+            setInterval(function () {
+                var en = new Enemys().init();
+                en.move();
+            },1000)
+        },
+        testing(){
+            "use strict";
+            var timer = setInterval(function () {
+                //1.敌机与我们的飞机
+                for (var ee in gameEngine.enemys){
+                    var flag1 = crashTest(gameEngine.enemys[ee].el,myPlane.el);
+                    if (flag1){
+                        clearInterval(timer);
+                        gameEngine.enemys[ee].boom();
+                        myPlane.boom();
+                        alert("游戏结束");//游戏结束,把定时器清除一下
+                        window.location.reload(true);
+                        break;
+                    }
+                }
+                //2.敌机与子弹
+                //短循环放外层
+                //长循环放内层
+                for (var bb in gameEngine.bullets){
+                    for (var ee in gameEngine.enemys){
+                        var flag2 = crashTest(gameEngine.bullets[bb].el,gameEngine.enemys[ee].el);
+                        if (flag2){
+                            gameEngine.bullets[bb].boom();
+                            gameEngine.enemys[ee].hurt();
+                        }
+                    }
+                }
+
+            })
+        }
     }
 })(window);

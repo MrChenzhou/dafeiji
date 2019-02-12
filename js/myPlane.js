@@ -13,12 +13,24 @@ window.myPlane = (function () {
             this.el.style.bottom = "0px";
             return this;
         },
-        // fire(){
-        //     "use strict";
-        //     setInterval(function () {
-        //
-        //
-        //     })
-        // }
+        fire(){
+            "use strict";
+            setInterval(function () {
+                new Bullets().init().move();
+
+            },this.sendSpeed);
+        },
+        boom(){
+            "use strict";
+            var num = 0;
+            this.timer = setInterval(()=>{
+                num++;
+                this.el.style.backgroundImage = `url(images/me_die${num}.png)`;
+                if (num>=4){
+                    clearInterval(this.timer);
+                    this.el.remove();
+                }
+            },100)
+        }
     }
 })();
