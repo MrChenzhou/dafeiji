@@ -76,7 +76,7 @@
         createEnemy(){
             "use strict";
             setInterval(function () {
-                var en = new Enemys().init();
+                var en = new Enemy().init();
                 en.move();
             },1000)
         },
@@ -88,22 +88,32 @@
                     var flag1 = crashTest(gameEngine.enemys[ee].el,myPlane.el);
                     if (flag1){
                         clearInterval(timer);
-                        gameEngine.enemys[ee].boom();
+                        //gameEngine.enemys[ee].boom();
                         myPlane.boom();
                         alert("游戏结束");//游戏结束,把定时器清除一下
                         window.location.reload(true);
-                        break;
+                        //break;
                     }
                 }
                 //2.敌机与子弹
                 //短循环放外层
                 //长循环放内层
-                for (var bb in gameEngine.bullets){
-                    for (var ee in gameEngine.enemys){
-                        var flag2 = crashTest(gameEngine.bullets[bb].el,gameEngine.enemys[ee].el);
-                        if (flag2){
-                            gameEngine.bullets[bb].boom();
+                // for (var bb in gameEngine.bullets){
+                //     for (var ee in gameEngine.enemys){
+                //         var flag2 = crashTest(gameEngine.bullets[bb].el,gameEngine.enemys[ee].el);
+                //         if (flag2){
+                //             gameEngine.bullets[bb].boom();
+                //             gameEngine.enemys[ee].hurt();
+                //         }
+                //     }
+                // }
+
+                for (var ee in gameEngine.enemys){
+                    for (var bb in gameEngine.bullets){
+                        if (crashTest(gameEngine.enemys[ee].el,gameEngine.bullets[bb].el)){
                             gameEngine.enemys[ee].hurt();
+                            gameEngine.bullets[bb].boom();
+
                         }
                     }
                 }

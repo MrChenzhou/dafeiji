@@ -33,7 +33,7 @@
 				//爆炸
 			window.onload = function () {
 				var oLis = document.querySelectorAll("li");
-				oLis.forEach((el,index)=>{
+				oLis.forEach(el=>{
 					el.onclick = function () {
 						gameEngine.init().start();
 						myPlane.sendSpeed = this.value;
